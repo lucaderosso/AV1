@@ -110,6 +110,7 @@ function dialValue(dial, value){
 		break;
 		case "d2":
 			dial2 = value;
+			updateLifeDecay(value);
 		break;
 		case "d3":
 			dial3 = value;
@@ -125,8 +126,7 @@ function dialValue(dial, value){
 			dial6 = value;
 		break;
 		case "d7":
-			dial7 = value;
-			updateLifeDecay(value);			
+			dial7 = value;			
 			background(value);
 		break;
 		default:
@@ -149,14 +149,21 @@ function checkSustain(layer, velocity){
 				if(layer == "layer3" || layer == "layer4"){
 					array[i].lifespan = 255 * dial1; // recover lifespan					
 				}
-
-				array[i].fading = false; // don't fade as long as pad is pressed 
+				if(velocity >=70){
+					array[i].fading = false; // don't fade if velocity is >= than 70 
+				} else if(velocity < 70){
+					array[i].fading = true; // fade if velocity is < than 70
+				}
 			} else {
-				// if velocity is == 0 (aka pad no longer pressed) then start fading the shape
-				array[i].fading = true;
+				// if velocity is == 0 (aka pad no longer pressed) chech if the shape was already fading to prevent this command fading it again from the start 
+				if(array[i].fading == false){
+					// then start fading the shape
+					array[i].fading = true;
+				}
 			}
 		}
 	}
+
 	// post("- \n");
 	// post("dial0: " + dial0 + "\n");
 	// post("dial1: " + dial1 + "\n");

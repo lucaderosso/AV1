@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x86",
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -1173,14 +1173,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "timeline.maxpat",
-				"bootpath" : "~/Documents/_Projects/2016-09_s-av_AV0/repository/AV0",
+				"bootpath" : "~/Documents/_Projects/2018-09_s-av_AV1/repository/AV1",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "timeline.txt",
-				"bootpath" : "~/Documents/_Projects/2016-09_s-av_AV0/repository/AV0",
+				"bootpath" : "~/Documents/_Projects/2018-09_s-av_AV1/repository/AV1",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1

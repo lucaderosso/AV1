@@ -120,7 +120,7 @@ function Shape(xPos, yPos, leftBound, rightBound, bottomBound, topBound, type){
 	this.type = type;
 	this.ease = 1;
 	this.lifespan = 0;
-	this.lifeDecay = 255.0;
+	this.lifeDecay = 55.0;
 
 	// the value at generation time. this value must never change so it can be used to recover the initial position or preserve the position given.
 	this.locationGenesis = Object.create(Vector);
