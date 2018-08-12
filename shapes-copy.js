@@ -37,6 +37,8 @@ Github: https://github.com/lucaderosso/AV0
 // GENERAL
 // ———————
 
+post("shapes-copy.js loaded \n");
+
 var positions = [-increment, increment];
 var decay = 255; // setting 255 (aka sudden decay) because it's my preffered starting setting
 
@@ -184,7 +186,7 @@ Shape.prototype.display = function(){
 		// Notes on commands:
 		// - moveto(): if you don't want to use it to actually move objects, then add it to the shape and set it to 0,0,0 to restore the coordinate other shapes might have assigned 
 
-		case "+_◼...._.": 
+		case "s000": 
 			//plane centered scaling both directions
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
@@ -214,7 +216,7 @@ Shape.prototype.display = function(){
 		// 	mySketch.glpopmatrix();
 		// break;
 
-		case "+_◼...._•": 
+		case "s001": 
 			//plane centered scaling both directions
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
@@ -233,7 +235,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "+_□...._.":
+		case "s002":
 			mySketch.glpushmatrix();
 			mySketch.gltranslate(this.location.x, this.locationGenesis.y, 0);
 			mySketch.glrotate(this.rotation, 1, 0, 0);
@@ -245,7 +247,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "+_◼...._-":
+		case "s003":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
 			mySketch.gltranslate(this.locationGenesis.x, (this.location.y + (this.scale.y * this.height) - this.height), 0); // position shape at location
@@ -261,7 +263,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "+_◼...._=":
+		case "s004":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
 			mySketch.gltranslate(this.locationGenesis.x, this.location.y, 0); // position shape at location
@@ -283,7 +285,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "·_|...._.":
+		case "s005":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
 			mySketch.gltranslate(this.locationGenesis.x * distort, this.locationGenesis.y, 0); // position shape at location
@@ -297,7 +299,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "·_|...._=":
+		case "s006":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
 			mySketch.gltranslate(this.locationGenesis.x, this.locationGenesis.y, 0); // position shape at location
@@ -317,7 +319,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "·_/...._.":
+		case "s007":
 			mySketch.glpushmatrix();
 			mySketch.gltranslate(this.locationGenesis.x, this.location.y * distort, 0); // position shape at location
 			mySketch.glrotate(this.rotation / 2, 0, 0, this.rotationDirection);
@@ -328,7 +330,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "·_//..._.":
+		case "s008":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
 			mySketch.gltranslate(this.locationGenesis.x, this.locationGenesis.y * distort, 0); // position shape at location
@@ -349,7 +351,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "·_□---□_.": // not that interesting
+		case "s009": // not that interesting
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
 			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y, 0); // position shape at location
@@ -376,7 +378,7 @@ Shape.prototype.display = function(){
 
 		break;
 
-		case "|_◼---◼_.": // not that interesting
+		case "s010": // not that interesting
 			mySketch.glpushmatrix();
 			mySketch.glenable("line_stipple");
 			mySketch.gllinestipple(1, 3855);
@@ -410,7 +412,7 @@ Shape.prototype.display = function(){
 
 		break;
 
-		case "-_-----_.": // not that interesting
+		case "s011": // not that interesting
 			mySketch.glpushmatrix();
 			mySketch.glenable("line_stipple");
 			mySketch.gllinestipple(1, 3855);
@@ -424,11 +426,10 @@ Shape.prototype.display = function(){
 
 		break;
 
-		case "·_◼...._.":
+		case "s012":
 			mySketch.glpushmatrix();
 			mySketch.gldisable("line_stipple");
 			//
-			mySketch.glpushmatrix();
 			mySketch.moveto(0, 0, 0);
 			mySketch.shapeorient(0, 0, (this.scale.y * (this.rotation + 360))-45);
 			mySketch.gltranslate(this.location.x, this.location.y, 0); // position shape at location
@@ -440,14 +441,14 @@ Shape.prototype.display = function(){
 
 		break;
 
-		case "-_⋀...._.":
+		case "s013":
 			mySketch.glpushmatrix();
 			mySketch.linesegment(this.boundLeft, this.locationGenesis.y * distort, 0, this.locationGenesis.x * this.scale.x, this.location.y, 0);
 			mySketch.linesegment(this.locationGenesis.x * this.scale.x, this.location.y, 0, this.boundRight, this.locationGenesis.y * distort, 0);	
 			mySketch.glpopmatrix();
 		break;
 
-		case "-_--|--_.":
+		case "s014":
 			mySketch.glpushmatrix();
 			mySketch.gltranslate(this.locationGenesis.x, this.location.y, 0);
 			mySketch.moveto(0, 0, 0);
@@ -465,7 +466,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "+_--|--_.":
+		case "s015":
 			mySketch.glpushmatrix();
 			mySketch.gltranslate(this.location.x, this.locationGenesis.y, 0);
 			mySketch.moveto(0, 0, 0);
@@ -491,7 +492,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "·_▲...._.":
+		case "s016":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 90);
 			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y, 0);
@@ -510,7 +511,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "·_□...._.":
+		case "s017":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 45);
 			mySketch.gltranslate(this.location.x, this.locationGenesis.y, 0);
@@ -524,7 +525,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "·_⊡...._.":
+		case "s018":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 45);
 			mySketch.gltranslate(this.location.x, this.location.y, 0);
@@ -550,7 +551,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "·_●...._.":
+		case "s019":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
 			mySketch.gltranslate((this.location.x + positions[1]) * distort, this.location.y, 0);

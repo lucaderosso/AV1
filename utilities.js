@@ -36,16 +36,16 @@ Github: https://github.com/lucaderosso/AV0
 // —————————————————————————————————————————————————————
 // SETTING UP: jit.window / jit.gl.render, jit.gl.sketch
 // —————————————————————————————————————————————————————
+post("utilities.js loaded \n");
+
 
 var myMatrix = new JitterObject("jit.matrix", "mat"); //
 myMatrix.dim = [1280, 1024];
 
 var myWindow = new JitterObject("jit.window", "video-window"); //
-myWindow.floating = 0;
 myWindow.size = [720, 450];
 myWindow.pos = [0, 0];
 myWindow.fsaa = 1;
-myWindow.floating = 0;
 myWindow.border = 1;
 myWindow.fullscreen = 0;
 myWindow.usedstrect = 1;

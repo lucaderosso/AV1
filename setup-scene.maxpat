@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x86",
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -40,12 +40,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-15",
-					"index" : 3,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 655.0, 803.0, 30.0, 30.0 ],
-					"presentation_rect" : [ 655.0, 803.0, 0.0, 0.0 ],
 					"style" : "",
 					"tricolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 				}
@@ -415,7 +414,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-31",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -598,7 +597,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -740,9 +739,9 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.5, 217.0, 67.0, 22.0 ],
+									"patching_rect" : [ 180.5, 217.0, 77.0, 22.0 ],
 									"style" : "",
-									"text" : "read types"
+									"text" : "read shapes"
 								}
 
 							}
@@ -1069,7 +1068,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-5",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -1109,7 +1108,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-23",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1123,7 +1122,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-22",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -1760,6 +1759,19 @@
 
 			}
  ],
+		"parameters" : 		{
+			"obj-54" : [ "tab", "tab", 0 ]
+		}
+,
+		"dependency_cache" : [ 			{
+				"name" : "types.txt",
+				"bootpath" : "~/Documents/_Projects/2016-09_s-av_AV0/repository/AV0",
+				"patcherrelativepath" : "../../../2016-09_s-av_AV0/repository/AV0",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
