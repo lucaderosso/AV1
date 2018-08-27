@@ -43,6 +43,7 @@ var myMatrix = new JitterObject("jit.matrix", "mat"); //
 myMatrix.dim = [1280, 1024];
 
 var myWindow = new JitterObject("jit.window", "video-window"); //
+myWindow.floating = 1;
 myWindow.size = [720, 450];
 myWindow.pos = [0, 0];
 myWindow.fsaa = 1;
@@ -56,6 +57,7 @@ var myRender = new JitterObject("jit.gl.render", "video-window");
 myRender.erase_color = [0, 0, 0, 1]; // change last value to set background opacity
 myRender.high_res = 1;
 myRender.ortho = 2;
+myRender.camera = [0, 0, 2.45];
 
 var mySketch = new JitterObject("jit.gl.sketch", "video-window");
 mySketch.blend_enable = 1; //because we are working with transparency
@@ -63,6 +65,10 @@ mySketch.antialias = 1;
 // mySketch.position = [-0.5, 0, 0];
 // mySketch.automatic = 0;
 
+var myCamera = new JitterObject("jit.gl.camera");
+myCamera.drawto="video-window";
+myCamera.viewport = [0, 0, 1, 1];
+// myCamera.poly_mode = [2, 1];
 
 
 // ————
@@ -340,7 +346,9 @@ function newGrid(i){
 	}
 	// calculate horizontal and vertical grid resolutions aka the number of cells in the grid 
 	horizontalRes = windowWidth / increment;
+	post("horizontalRes: " + horizontalRes + "\n");
 	verticalRes = windowHeight / increment;
+	post("verticalRes: " + verticalRes + "\n");
 	// positions used to have many values. this current iteration doesn't make much sense but I left it to avoid updating other areas of the code and keep moving with the rest
 	positions = [-increment, increment];
 	// update myGrid dim to match the calculated grid

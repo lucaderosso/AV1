@@ -100,13 +100,13 @@ function dialValue(dial, value){
 	switch (dial){
 		case "d0": // Volume Top Two Layers
 			dial0 = value;
-			assignLifeSpanForLayer(value, 0);
-			assignLifeSpanForLayer(value, 1);
+			//assignLifeSpanForLayer(value, 0);
+			//assignLifeSpanForLayer(value, 1);
 		break;
 		case "d1": // Volume bottom Two Layers
 			dial1 = value;
-			assignLifeSpanForLayer(value, 2);
-			assignLifeSpanForLayer(value, 3);
+			//assignLifeSpanForLayer(value, 2);
+			//assignLifeSpanForLayer(value, 3);
 		break;
 		case "d2":
 			dial2 = value;
@@ -114,6 +114,7 @@ function dialValue(dial, value){
 		break;
 		case "d3":
 			dial3 = value;
+			cameraControl(value);
 		break;
 		case "d4":
 			dial4 = value;
@@ -133,6 +134,20 @@ function dialValue(dial, value){
 	}
 }
 
+
+function perspective(i){
+	myCamera.ortho = i;
+}
+
+function cameraControl(value){
+	// myRender.camera = [value * 5, 0, 1];
+	myCamera.lens_angle = 53 + (value * 100);
+	// myCamera.rotate = [0, value * 360, 0, 1];
+	post(myCamera.lens_angle + "\n");
+	// myRender.rotatexyz = [0, value * 360, 0];
+}
+
+
 // pads: sustain control to maintain shapes on screen for as long as pad is pressed
 function checkSustain(layer, velocity){
 	updateSustainForLayer(layer, velocity);
@@ -149,7 +164,7 @@ function checkSustain(layer, velocity){
 				if(layer == "layer3" || layer == "layer4"){
 					array[i].lifespan = 255 * dial1; // recover lifespan					
 				}
-				if(velocity >=70){
+				if(velocity >=60){
 					array[i].fading = false; // don't fade if velocity is >= than 70 
 				} else if(velocity < 70){
 					array[i].fading = true; // fade if velocity is < than 70
@@ -308,12 +323,19 @@ function background(value){
 	}
 }
 
-function updateProgressBar(timeLeft, totalTime){
-	progressBar.endPoint.x = (windowWidth * (timeLeft / totalTime)) - viewPortRight;
+var isTimerOn = false;
+
+function enableProgressBar(i){
+	if(i == 0){
+		isTimerOn = false;
+	} else if(i == 1){
+		isTimerOn = true;
+	}
 }
 
-function perspective(i){
-	myRender.ortho = i;
+
+function updateProgressBar(timeLeft, totalTime){
+	progressBar.endPoint.x = (windowWidth * (timeLeft / totalTime)) - viewPortRight;
 }
 
 
@@ -354,7 +376,11 @@ function draw(){
 	outlet(0, "jit_matrix", myRender.name); 
 	outlet(1, "jit_matrix", myMatrix.name);
 
-	progressBar.run();
+	if(isTimerOn == true){
+		progressBar.run();		
+	};
+	
+
 	gridIntensity();
 	viewPort();
 

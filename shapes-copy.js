@@ -120,14 +120,17 @@ function Shape(xPos, yPos, leftBound, rightBound, bottomBound, topBound, type){
 	this.scaling = false;
 
 	this.type = type;
-	this.ease = 1;
+	this.ease = updatedEase;
 	this.lifespan = 0;
-	this.lifeDecay = 55.0;
+	this.lifeDecay = updatedDecay;
 
 	// the value at generation time. this value must never change so it can be used to recover the initial position or preserve the position given.
 	this.locationGenesis = Object.create(Vector);
 	this.locationGenesis.x = xPos;
 	this.locationGenesis.y = yPos;	
+	// this.locationGenesis.z = (Math.random()*6)-3;
+	this.locationGenesis.z = 1;
+	// this.locationGenesis.z = 0;
 
 	// roaming bounds
 	this.boundLeft = leftBound;
@@ -143,7 +146,8 @@ function Shape(xPos, yPos, leftBound, rightBound, bottomBound, topBound, type){
 
 	this.location = Object.create(Vector);
 	this.location.x = xPos;
-	this.location.y = yPos;	
+	this.location.y = yPos;
+	this.location.z = this.locationGenesis.z;
 	this.targetLocation = Object.create(Vector);
 	this.targetLocation.x = xPos;
 	this.targetLocation.y = yPos;
@@ -190,7 +194,7 @@ Shape.prototype.display = function(){
 			//plane centered scaling both directions
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate(this.locationGenesis.x, this.location.y, 0);
+			mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
 			mySketch.moveto(0, 0, 0);
 			mySketch.glrotate(this.rotation, 0, 1, 0);
 			mySketch.glscale(1, this.scale.y, 1);
@@ -220,7 +224,7 @@ Shape.prototype.display = function(){
 			//plane centered scaling both directions
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate(this.locationGenesis.x, this.location.y, 0);
+			mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
 			mySketch.moveto(0, 0, 0);
 			mySketch.glrotate(this.rotation, 0, 1, 0);
 			mySketch.glscale(1, this.scale.y, 1);
@@ -237,20 +241,20 @@ Shape.prototype.display = function(){
 
 		case "s002":
 			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 1, 0, 0);
 			mySketch.glscale(this.scale.x * distort, this.scale.y * distort, 1);
 			mySketch.moveto(0, 0, 0);
 			//
 			mySketch.gllinewidth(4);
-			mySketch.framequad(this.width, this.height, 0, this.width, -this.height, 0, -this.width, -this.height, 0, -this.width, this.height, 0);
+			mySketch.framequad(this.width - 0.001, this.height/4, 0, this.width - 0.001, -this.height/4, 0, -this.width + 0.001, -this.height/4, 0, -this.width + 0.001, this.height/4, 0);
 			mySketch.glpopmatrix();
 		break;
 
 		case "s003":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate(this.locationGenesis.x, (this.location.y + (this.scale.y * this.height) - this.height), 0); // position shape at location
+			mySketch.gltranslate(this.locationGenesis.x, (this.location.y + (this.scale.y * this.height) - this.height), this.locationGenesis.z); // position shape at location
 			mySketch.moveto(0, 0, 0);
 			mySketch.glrotate(this.rotation, 0, 1, 0);
 			//
@@ -266,7 +270,7 @@ Shape.prototype.display = function(){
 		case "s004":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate(this.locationGenesis.x, this.location.y, 0); // position shape at location
+			mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z); // position shape at location
 			mySketch.moveto(0, 0, 0);
 			mySketch.glrotate(this.rotation * distort, 0, 1, 0);
 			//
@@ -288,7 +292,7 @@ Shape.prototype.display = function(){
 		case "s005":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate(this.locationGenesis.x * distort, this.locationGenesis.y, 0); // position shape at location
+			mySketch.gltranslate(this.locationGenesis.x * distort, this.locationGenesis.y, this.locationGenesis.z); // position shape at location
 			// moveto() does not apply to linesegment
 			mySketch.glrotate(this.rotation, 0, 0, -1);
 			mySketch.glscale(this.scale.x, 1, 1);
@@ -302,7 +306,7 @@ Shape.prototype.display = function(){
 		case "s006":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate(this.locationGenesis.x, this.locationGenesis.y, 0); // position shape at location
+			mySketch.gltranslate(this.locationGenesis.x, this.locationGenesis.y, this.locationGenesis.z); // position shape at location
 			mySketch.glrotate(this.rotation, 0, 0, -1);
 			mySketch.glscale(this.scale.x, 1, 1);
 			//
@@ -321,7 +325,7 @@ Shape.prototype.display = function(){
 
 		case "s007":
 			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.locationGenesis.x, this.location.y * distort, 0); // position shape at location
+			mySketch.gltranslate(this.locationGenesis.x, this.location.y * distort, this.locationGenesis.z); // position shape at location
 			mySketch.glrotate(this.rotation / 2, 0, 0, this.rotationDirection);
 			mySketch.gldisable("line_stipple");
 			mySketch.glscale(this.scale.x, 1, 1);
@@ -333,7 +337,7 @@ Shape.prototype.display = function(){
 		case "s008":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate(this.locationGenesis.x, this.locationGenesis.y * distort, 0); // position shape at location
+			mySketch.gltranslate(this.locationGenesis.x, this.locationGenesis.y * distort, this.locationGenesis.z); // position shape at location
 			mySketch.glrotate(this.rotation, 0, 0, 1);
 			
 			mySketch.glenable("line_stipple");
@@ -354,12 +358,12 @@ Shape.prototype.display = function(){
 		case "s009": // not that interesting
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y, 0); // position shape at location
+			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y, this.locationGenesis.z); // position shape at location
 			mySketch.linesegment(0, -this.height/2, 0, 0, this.height/2, 0);
 			mySketch.glpopmatrix();
 
 			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y + this.height/2, 0);
+			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y + this.height/2, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 1, 0, 0);
 			mySketch.glscale(this.scale.y, this.scale.y, 1);
 			// mySketch.moveto(0, this.height/2, 0);
@@ -368,7 +372,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 
 			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y - this.height/2, 0);
+			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y - this.height/2, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 1, 0, 0);
 			mySketch.glscale(this.scale.y, this.scale.y, 1);
 			// mySketch.moveto(0, this.height/2, 0);
@@ -382,7 +386,7 @@ Shape.prototype.display = function(){
 			mySketch.glpushmatrix();
 			mySketch.glenable("line_stipple");
 			mySketch.gllinestipple(1, 3855);
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y * distort, 0); // position shape at location			
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y * distort, this.locationGenesis.z); // position shape at location			
 			mySketch.linesegment(0, this.scale.y * this.height, 0, 0, -(this.scale.y * this.height), 0);
 			// mySketch.linesegment(0, -this.height, 0, 0, this.height, 0);
 
@@ -393,7 +397,7 @@ Shape.prototype.display = function(){
 			mySketch.glpushmatrix();
 			mySketch.moveto(0, 0, 0);
 			mySketch.shapeorient(0, 0, (this.scale.y * 360)-45);
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y * distort + (this.scale.y * this.height), 0); // position shape at location
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y * distort + (this.scale.y * this.height), this.locationGenesis.z); // position shape at location
 
 			mySketch.shapeslice(4);
 			//
@@ -405,7 +409,7 @@ Shape.prototype.display = function(){
 			mySketch.glpushmatrix();
 			mySketch.moveto(0, 0, 0);
 			mySketch.shapeorient(0, 0, (this.scale.y * 360)-45);
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y  * distort - (this.scale.y * this.height), 0); // position shape at location
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y  * distort - (this.scale.y * this.height), this.locationGenesis.z); // position shape at location
 
 			mySketch.circle(this.scale.y * 0.0125);
 			mySketch.glpopmatrix();
@@ -416,7 +420,7 @@ Shape.prototype.display = function(){
 			mySketch.glpushmatrix();
 			mySketch.glenable("line_stipple");
 			mySketch.gllinestipple(1, 3855);
-			mySketch.gltranslate(this.locationGenesis.x, this.location.y * distort, 0); // position shape at location			
+			mySketch.gltranslate(this.locationGenesis.x, this.location.y * distort, this.locationGenesis.z); // position shape at location			
 			mySketch.glrotate(this.rotation/2, 0, 1, 0);
 
 			mySketch.gllinewidth(32 * this.scale.y);
@@ -432,7 +436,7 @@ Shape.prototype.display = function(){
 			//
 			mySketch.moveto(0, 0, 0);
 			mySketch.shapeorient(0, 0, (this.scale.y * (this.rotation + 360))-45);
-			mySketch.gltranslate(this.location.x, this.location.y, 0); // position shape at location
+			mySketch.gltranslate(this.location.x, this.location.y, this.locationGenesis.z); // position shape at location
 
 			mySketch.shapeslice(4);
 			//
@@ -450,7 +454,7 @@ Shape.prototype.display = function(){
 
 		case "s014":
 			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.locationGenesis.x, this.location.y, 0);
+			mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
 			mySketch.moveto(0, 0, 0);
 			mySketch.glrotate(this.rotation, 0, 0, 1);
 			//
@@ -458,7 +462,7 @@ Shape.prototype.display = function(){
 			//
 			mySketch.gllinewidth(4);
 			mySketch.linesegment(-this.width, 0, 0, this.width, 0, 0);
-			mySketch.moveto(0, this.locationGenesis.x * (1 - this.scale.x), 0);
+			mySketch.moveto(0, this.locationGenesis.x * (1 - this.scale.x), this.locationGenesis.z);
 			mySketch.glrotate(90, 0, 0, 1);
 			mySketch.shapeprim("polygon");
 
@@ -468,7 +472,7 @@ Shape.prototype.display = function(){
 
 		case "s015":
 			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
 			mySketch.moveto(0, 0, 0);
 			//
 			mySketch.gldisable("line_stipple");
@@ -480,7 +484,7 @@ Shape.prototype.display = function(){
 			//
 			//
 			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.locationGenesis.x, this.location.y, 0);
+			mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
 			mySketch.moveto(0, 0, 0);
 			mySketch.glrotate(this.rotation+90, 0, 0, this.rotationDirection);
 			//
@@ -495,7 +499,7 @@ Shape.prototype.display = function(){
 		case "s016":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 90);
-			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y, 0);
+			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
 			mySketch.moveto(0, 0, 0);
 			//
@@ -514,7 +518,7 @@ Shape.prototype.display = function(){
 		case "s017":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 45);
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 0, 1, 0);
 			mySketch.moveto(0, this.locationGenesis.x * (1 - this.scale.x), 0);
 			//
@@ -525,10 +529,11 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
+		// remove this one
 		case "s018":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 45);
-			mySketch.gltranslate(this.location.x, this.location.y, 0);
+			mySketch.gltranslate(this.location.x, this.location.y, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 0, 0, 1);
 			mySketch.moveto(0, 0, 0);
 			//
@@ -540,7 +545,7 @@ Shape.prototype.display = function(){
 			//–––––popping–––––//
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 45);
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 0, 0, 1);
 			mySketch.moveto(0, 0, 0);
 			mySketch.glscale(this.scale.y / distort, this.scale.y / distort, 0)
@@ -554,7 +559,7 @@ Shape.prototype.display = function(){
 		case "s019":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate((this.location.x + positions[1]) * distort, this.location.y, 0);
+			mySketch.gltranslate((this.location.x + positions[1]) * distort, this.location.y, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 0, 0, 1);			
 			mySketch.moveto(positions[0], 0, 0);
 			//
@@ -695,6 +700,7 @@ function genesis(layer, type, gridColumns, gridRows, items){
 			// populate the arrays with all the coordinates calculated
 			yCoordinates.push(y);
 			xCoordinates.push(x);
+			post("xCoor: " + x + "| yCoor: " + y + "\n");
 			// populate the arrays with all the coordinates to define the roaming areas
 			leftBounds.push(left);
 			rightBounds.push(right);
@@ -715,6 +721,8 @@ function genesis(layer, type, gridColumns, gridRows, items){
 	for (var i = cellsIndex; i < (items + cellsIndex); i++) {
 		addShapesToLayer(array, xCoordinates[i], yCoordinates[i], leftBounds[i], rightBounds[i], bottomBounds[i], topBounds[i], type);					
 	}
+
+	post("layer" + layer + "| totalCells: " + totalCells + "| items: " + items + "\n");
 
 }
 
@@ -737,14 +745,14 @@ function assignLifeSpanForLayer(value, layer){
 	}
 }
 
-var newEase = 0.2;
+var updatedEase = 0.2;
 
 function assignEase(value){	
 	for(var i = 0; i < layers.length; i++){
 		for(var f = 0; f < layers[i].shapes.length; f++){
-			newEase = 1 - value;
-			newEase = newEase  == 0 ? 0.1 : newEase;
-			layers[i].shapes[f].ease = newEase;
+			updatedEase = 1 - value;
+			updatedEase = updatedEase  == 0 ? 0.1 : updatedEase;
+			layers[i].shapes[f].ease = updatedEase;
 		}
 	}
 }
@@ -846,25 +854,29 @@ function newScaleTarget(layer, velocity, easeStatus, arrangement){
 	}
 }
 
-function updateLifeDecay(value){		
+var updatedDecay = 5;
+
+function updateLifeDecay(value){
+	decay = value;
+
 	if(layer1.shapes.length > 0){
 		for(var i = 0; i < layer1.shapes.length; i++){
-			layer1.shapes[i].lifeDecay = (1.01 - value) * 255;
+			layer1.shapes[i].lifeDecay = (1.02 - updatedDecay) * 255;
 		}
 	}
 	if(layer2.shapes.length > 0){
 		for(var i = 0; i < layer2.shapes.length; i++){
-			layer2.shapes[i].lifeDecay = (1.01 - value) * 255;
+			layer2.shapes[i].lifeDecay = (1.02 - updatedDecay) * 255;
 		}
 	}
 	if(layer3.shapes.length > 0){
 		for(var i = 0; i < layer3.shapes.length; i++){
-			layer3.shapes[i].lifeDecay = (1.01 - value) * 255;
+			layer3.shapes[i].lifeDecay = (1.02 - updatedDecay) * 255;
 		}
 	}
 	if(layer4.shapes.length > 0){
 		for(var i = 0; i < layer4.shapes.length; i++){
-			layer4.shapes[i].lifeDecay = (1.01 - value) * 255;
+			layer4.shapes[i].lifeDecay = (1.02 - updatedDecay) * 255;
 		}
 	}
 }
