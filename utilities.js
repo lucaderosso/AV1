@@ -56,7 +56,6 @@ myWindow.fsmenubar = 0;
 var myRender = new JitterObject("jit.gl.render", "video-window");
 myRender.erase_color = [0, 0, 0, 1]; // change last value to set background opacity
 myRender.high_res = 1;
-myRender.ortho = 2;
 myRender.camera = [0, 0, 2.45];
 
 var mySketch = new JitterObject("jit.gl.sketch", "video-window");
@@ -68,7 +67,7 @@ mySketch.antialias = 1;
 var myCamera = new JitterObject("jit.gl.camera");
 myCamera.drawto="video-window";
 myCamera.viewport = [0, 0, 1, 1];
-// myCamera.poly_mode = [2, 1];
+myCamera.ortho = 2; // this was first asigned to myRender but it's now applied to the camera
 
 
 // ————

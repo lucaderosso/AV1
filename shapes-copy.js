@@ -174,7 +174,7 @@ Shape.prototype.display = function(){
 	// Also:
 	// mySketch.moveto(0, 0, 0); is used below to center the composition on x,y 0,0.
 	// var distort = (1 - (high * dial6));
-	var distort = (1 - (all * dial6));
+	var distort = (1 - (allFreq * dial6));
 	var alpha = this.lifespan / 255.0;
 	mySketch.glcolor(this.color.r, this.color.g, this.color.b, alpha);
 	mySketch.gllinewidth(2);
@@ -857,7 +857,7 @@ function newScaleTarget(layer, velocity, easeStatus, arrangement){
 var updatedDecay = 5;
 
 function updateLifeDecay(value){
-	decay = value;
+	updatedDecay = value;
 
 	if(layer1.shapes.length > 0){
 		for(var i = 0; i < layer1.shapes.length; i++){

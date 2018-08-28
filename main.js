@@ -258,10 +258,10 @@ function updateSustainForLayer(layer, velocity){
 
 function levels(l, m, h, a){
 	// update values for low mid high levels coming from the DSP Values M4L device in the same track as this one.
-	low = l;
-	mid = m;
-	high = h;
-	all = a;
+	lowFreq = l;
+	midFreq = m;
+	highFreq = h;
+	allFreq = a;
 }
 
 var whiteOnBlack = true;
