@@ -430,7 +430,7 @@ Shape.prototype.display = function(){
 
 		break;
 
-		case "s012":
+		case "s012": // not that interesting
 			mySketch.glpushmatrix();
 			mySketch.gldisable("line_stipple");
 			//

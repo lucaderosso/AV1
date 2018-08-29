@@ -122,6 +122,7 @@ function dialValue(dial, value){
 		break;
 		case "d5": // Audio In
 			dial5 = value;
+			gridIntensity(dial5);
 		break;
 		case "d6": //LFO
 			dial6 = value;
@@ -164,10 +165,10 @@ function checkSustain(layer, velocity){
 				if(layer == "layer3" || layer == "layer4"){
 					array[i].lifespan = 255 * dial1; // recover lifespan					
 				}
-				if(velocity >=60){
-					array[i].fading = false; // don't fade if velocity is >= than 70 
-				} else if(velocity < 70){
-					array[i].fading = true; // fade if velocity is < than 70
+				if(velocity >= 60){
+					array[i].fading = false; // don't fade if velocity is >= than 60 
+				} else if(velocity < 60){
+					array[i].fading = true; // fade if velocity is < than 60
 				}
 			} else {
 				// if velocity is == 0 (aka pad no longer pressed) chech if the shape was already fading to prevent this command fading it again from the start 
@@ -303,23 +304,23 @@ function invertColors(invert){
 }
 
 // gridIntensity makes the grid's color reactive to audio signal
-function gridIntensity(){
+function gridIntensity(value){
 	if(whiteOnBlack == true){
 		// adding 0.1 so it never goes to 0
-		var value = 0.1 + ((high * dial5) * 0.4);
+		var amount = 0.1 + ((highFreq * value) * 0.4);
 		// assigning value to R, G and B to make it go from black to white
-		myGrid.gl_color = [value, value, value, 1];
+		myGrid.gl_color = [amount, amount, amount, 1];
 	} else {
-		var value = 0.9 - (high * dial5);
-		myGrid.gl_color = [value, value, value, 1];
+		var amount = 0.9 - (highFreq * value);
+		myGrid.gl_color = [amount, amount, amount, 1];
 	}
 }
 
 function background(value){
 	if(whiteOnBlack == true){
-		myRender.erase_color = [0, 0, 0, 1 - (value - 0.01)];
+		myRender.erase_color = [0, 0, 0, 1 - (value - 0.02)];
 	} else {
-		myRender.erase_color = [1, 1, 1, 1 - (value - 0.01)];
+		myRender.erase_color = [1, 1, 1, 1 - (value - 0.02)];
 	}
 }
 
@@ -381,7 +382,7 @@ function draw(){
 	};
 	
 
-	gridIntensity();
+	gridIntensity(dial5);
 	viewPort();
 
 	myRender.erase();
