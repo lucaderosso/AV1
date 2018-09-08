@@ -128,9 +128,8 @@ function Shape(xPos, yPos, leftBound, rightBound, bottomBound, topBound, type){
 	this.locationGenesis = Object.create(Vector);
 	this.locationGenesis.x = xPos;
 	this.locationGenesis.y = yPos;	
-	// this.locationGenesis.z = (Math.random()*6)-3;
-	this.locationGenesis.z = 1;
-	// this.locationGenesis.z = 0;
+	// this.locationGenesis.z = Math.random();
+	this.locationGenesis.z = 0;
 
 	// roaming bounds
 	this.boundLeft = leftBound;
@@ -227,7 +226,7 @@ Shape.prototype.display = function(){
 			mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
 			mySketch.moveto(0, 0, 0);
 			mySketch.glrotate(this.rotation, 0, 1, 0);
-			mySketch.glscale(1, this.scale.y, 1);
+			// mySketch.glscale(1, this.scale.y, 1);
 			//
 			mySketch.shapeslice(2, 2);
 			mySketch.shapeprim("points");
@@ -254,9 +253,9 @@ Shape.prototype.display = function(){
 		case "s003":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate(this.locationGenesis.x, (this.location.y + (this.scale.y * this.height) - this.height), this.locationGenesis.z); // position shape at location
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z); // position shape at location
 			mySketch.moveto(0, 0, 0);
-			mySketch.glrotate(this.rotation, 0, 1, 0);
+			mySketch.glrotate(this.rotation, 0, 1, 1);
 			//
 			mySketch.gldisable("line_stipple");
 			mySketch.shapeprim("lines");
@@ -327,10 +326,10 @@ Shape.prototype.display = function(){
 			mySketch.glpushmatrix();
 			mySketch.gltranslate(this.locationGenesis.x, this.location.y * distort, this.locationGenesis.z); // position shape at location
 			mySketch.glrotate(this.rotation / 2, 0, 0, this.rotationDirection);
-			mySketch.gldisable("line_stipple");
 			mySketch.glscale(this.scale.x, 1, 1);
 			mySketch.gllinewidth(4);
-			mySketch.linesegment(this.location.x + this.width, 0, 0, this.location.x - this.width, 0, 0);
+			mySketch.gldisable("line_stipple");
+			mySketch.linesegment(this.width, 0, 0, -this.width, 0, 0);
 			mySketch.glpopmatrix();
 		break;
 
@@ -338,11 +337,11 @@ Shape.prototype.display = function(){
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
 			mySketch.gltranslate(this.locationGenesis.x, this.locationGenesis.y * distort, this.locationGenesis.z); // position shape at location
-			mySketch.glrotate(this.rotation, 0, 0, 1);
-			
-			mySketch.glenable("line_stipple");
+			mySketch.glrotate(this.rotation, 0, 0, 1);	
+		
 			mySketch.gllinewidth(4);
 			mySketch.gllinestipple(2, 3855);
+			mySketch.glenable("line_stipple");
 			mySketch.linesegment(this.location.x - this.width, this.location.y, 0, this.location.x + this.width, this.location.y, 0);
 			mySketch.glpopmatrix();
 
@@ -358,28 +357,39 @@ Shape.prototype.display = function(){
 		case "s009": // not that interesting
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
-			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y, this.locationGenesis.z); // position shape at location
-			mySketch.linesegment(0, -this.height/2, 0, 0, this.height/2, 0);
-			mySketch.glpopmatrix();
-
-			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y + this.height/2, this.locationGenesis.z);
-			mySketch.glrotate(this.rotation, 1, 0, 0);
-			mySketch.glscale(this.scale.y, this.scale.y, 1);
-			// mySketch.moveto(0, this.height/2, 0);
+			mySketch.moveto(this.locationGenesis.x, this.locationGenesis.y, this.locationGenesis.z); // position shape at location
+			mySketch.glrotate(this.rotation / 2, 0, 0, this.rotationDirection);
+			mySketch.glscale(this.scale.x, 1, 1);
 			//
-			mySketch.framequad(0.0075, 0.0075, 0, 0.0075, -0.0075, 0, -0.0075, -0.0075, 0, -0.0075, 0.0075, 0);
-			mySketch.glpopmatrix();
-
-			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y - this.height/2, this.locationGenesis.z);
-			mySketch.glrotate(this.rotation, 1, 0, 0);
-			mySketch.glscale(this.scale.y, this.scale.y, 1);
-			// mySketch.moveto(0, this.height/2, 0);
 			//
-			mySketch.framequad(0.0075, 0.0075, 0, 0.0075, -0.0075, 0, -0.0075, -0.0075, 0, -0.0075, 0.0075, 0);
+			mySketch.gllinewidth(Math.ceil(this.scale.x * 20 * distort));
+			mySketch.gldisable("line_stipple");
+			mySketch.linesegment(this.location.x + this.width, this.location.y, 0, this.location.x - this.width, this.location.y, 0);
+			//
 			mySketch.glpopmatrix();
+			// mySketch.glpushmatrix();
+			// mySketch.shapeorient(0, 0, 0);
+			// mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y, this.locationGenesis.z); // position shape at location
+			// mySketch.linesegment(0, -this.height/2, 0, 0, this.height/2, 0);
+			// mySketch.glpopmatrix();
 
+			// mySketch.glpushmatrix();
+			// mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y + this.height/2, this.locationGenesis.z);
+			// mySketch.glrotate(this.rotation, 1, 0, 0);
+			// mySketch.glscale(this.scale.y, this.scale.y, 1);
+			// // mySketch.moveto(0, this.height/2, 0);
+			// //
+			// mySketch.framequad(0.0075, 0.0075, 0, 0.0075, -0.0075, 0, -0.0075, -0.0075, 0, -0.0075, 0.0075, 0);
+			// mySketch.glpopmatrix();
+
+			// mySketch.glpushmatrix();
+			// mySketch.gltranslate(this.location.x * distort, this.locationGenesis.y - this.height/2, this.locationGenesis.z);
+			// mySketch.glrotate(this.rotation, 1, 0, 0);
+			// mySketch.glscale(this.scale.y, this.scale.y, 1);
+			// // mySketch.moveto(0, this.height/2, 0);
+			// //
+			// mySketch.framequad(0.0075, 0.0075, 0, 0.0075, -0.0075, 0, -0.0075, -0.0075, 0, -0.0075, 0.0075, 0);
+			// mySketch.glpopmatrix();
 		break;
 
 		case "s010": // not that interesting
@@ -413,7 +423,6 @@ Shape.prototype.display = function(){
 
 			mySketch.circle(this.scale.y * 0.0125);
 			mySketch.glpopmatrix();
-
 		break;
 
 		case "s011": // not that interesting
@@ -427,7 +436,6 @@ Shape.prototype.display = function(){
 			mySketch.linesegment(this.width, 0, 0, -this.width, 0, 0);
 
 			mySketch.glpopmatrix();
-
 		break;
 
 		case "s012": // not that interesting
@@ -440,7 +448,7 @@ Shape.prototype.display = function(){
 
 			mySketch.shapeslice(4);
 			//
-			mySketch.circle(this.scale.y * 0.025);
+			mySketch.circle(this.scale.x * 0.0125);
 			mySketch.glpopmatrix();
 
 		break;
@@ -464,8 +472,6 @@ Shape.prototype.display = function(){
 			mySketch.linesegment(-this.width, 0, 0, this.width, 0, 0);
 			mySketch.moveto(0, this.locationGenesis.x * (1 - this.scale.x), this.locationGenesis.z);
 			mySketch.glrotate(90, 0, 0, 1);
-			mySketch.shapeprim("polygon");
-
 			mySketch.plane(this.height/16, this.width/128);
 			mySketch.glpopmatrix();
 		break;
@@ -533,7 +539,7 @@ Shape.prototype.display = function(){
 		case "s018":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 45);
-			mySketch.gltranslate(this.location.x, this.location.y, this.locationGenesis.z);
+			mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 0, 0, 1);
 			mySketch.moveto(0, 0, 0);
 			//
@@ -545,14 +551,14 @@ Shape.prototype.display = function(){
 			//–––––popping–––––//
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 45);
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
-			mySketch.glrotate(this.rotation, 0, 0, 1);
+			mySketch.gltranslate(this.locationGenesis.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glrotate(this.rotation, 0, 1, 0);
 			mySketch.moveto(0, 0, 0);
 			mySketch.glscale(this.scale.y / distort, this.scale.y / distort, 0)
 			//
 			mySketch.shapeslice(4);
 			//
-			mySketch.framecircle(0.015);
+			mySketch.framecircle(this.width);
 			mySketch.glpopmatrix();
 		break;
 
@@ -671,7 +677,6 @@ function genesis(layer, type, gridColumns, gridRows, items){
 	var colPace = (windowWidth / columns) / 2;
 	var rowPace = (windowHeight / rows) / 2;
 
-	
 	// post("rowPace: " + rowPace + "\n");
 	
 	var xCoordinates = [];
@@ -682,7 +687,7 @@ function genesis(layer, type, gridColumns, gridRows, items){
 	var topBounds = [];
 
 	var cellsIndex = 0; // defines the starting cell in polulating a grid (eg: grid 2coll 2rows cellsIndex = 1, first shape will be in the second cell - bottom right)
-
+	post("•\n")
 	// calculate x and y position for all items
 	for (var f = 0; f < rows; f++) {
 		// calculate vertical multiplier
@@ -714,12 +719,21 @@ function genesis(layer, type, gridColumns, gridRows, items){
 		// calculate extra room
 		var emptyCells = totalCells - items;
 		// calculate new starting index do that there will be n even number of empty cells at the beginnin and end of the grid
-		cellsIndex = emptyCells / 2;
+		cellsIndex = Math.floor(emptyCells / 2);
+		post(layer + " cellsIndex: " + cellsIndex + "\n");
 	}
 
 	// populate array with shapes
-	for (var i = cellsIndex; i < (items + cellsIndex); i++) {
-		addShapesToLayer(array, xCoordinates[i], yCoordinates[i], leftBounds[i], rightBounds[i], bottomBounds[i], topBounds[i], type);					
+	var populateNormally = Math.random() > 0.5 ? true : false;
+	post("populateNormally: " + populateNormally + "\n");
+	if(populateNormally == true){	
+		for (var i = cellsIndex; i < (items + cellsIndex); i++) {
+			addShapesToLayer(array, xCoordinates[i], yCoordinates[i], leftBounds[i], rightBounds[i], bottomBounds[i], topBounds[i], type);					
+		}
+	}else{
+		for (var i = totalCells - 1; i >= cellsIndex; i--) {
+			addShapesToLayer(array, xCoordinates[i], yCoordinates[i], leftBounds[i], rightBounds[i], bottomBounds[i], topBounds[i], type);					
+		}
 	}
 
 	post("layer" + layer + "| totalCells: " + totalCells + "| items: " + items + "\n");
@@ -854,29 +868,29 @@ function newScaleTarget(layer, velocity, easeStatus, arrangement){
 	}
 }
 
-var updatedDecay = 5;
+var updatedDecay = 40;
 
 function updateLifeDecay(value){
-	updatedDecay = value;
+	updatedDecay = (1.01 - value) * 255;
 
 	if(layer1.shapes.length > 0){
 		for(var i = 0; i < layer1.shapes.length; i++){
-			layer1.shapes[i].lifeDecay = (1.02 - updatedDecay) * 255;
+			layer1.shapes[i].lifeDecay = updatedDecay;
 		}
 	}
 	if(layer2.shapes.length > 0){
 		for(var i = 0; i < layer2.shapes.length; i++){
-			layer2.shapes[i].lifeDecay = (1.02 - updatedDecay) * 255;
+			layer2.shapes[i].lifeDecay = updatedDecay;
 		}
 	}
 	if(layer3.shapes.length > 0){
 		for(var i = 0; i < layer3.shapes.length; i++){
-			layer3.shapes[i].lifeDecay = (1.02 - updatedDecay) * 255;
+			layer3.shapes[i].lifeDecay = updatedDecay;
 		}
 	}
 	if(layer4.shapes.length > 0){
 		for(var i = 0; i < layer4.shapes.length; i++){
-			layer4.shapes[i].lifeDecay = (1.02 - updatedDecay) * 255;
+			layer4.shapes[i].lifeDecay = updatedDecay;
 		}
 	}
 }

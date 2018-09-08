@@ -107,6 +107,7 @@ function dialValue(dial, value){
 			dial1 = value;
 			//assignLifeSpanForLayer(value, 2);
 			//assignLifeSpanForLayer(value, 3);
+			cameraViewport(dial1);
 		break;
 		case "d2":
 			dial2 = value;
@@ -142,10 +143,15 @@ function perspective(i){
 
 function cameraControl(value){
 	// myRender.camera = [value * 5, 0, 1];
-	myCamera.lens_angle = 53 + (value * 100);
+	myCamera.lens_angle = 53 - (value * 100);
+	// myCamera.rotate = [value * 100, 0, 1, 0];
 	// myCamera.rotate = [0, value * 360, 0, 1];
-	post(myCamera.lens_angle + "\n");
+	// post(myCamera.lens_angle + "\n");
 	// myRender.rotatexyz = [0, value * 360, 0];
+}
+
+function cameraViewport(value){
+	myCamera.viewport = [0, 0, 1, value];
 }
 
 
@@ -165,11 +171,7 @@ function checkSustain(layer, velocity){
 				if(layer == "layer3" || layer == "layer4"){
 					array[i].lifespan = 255 * dial1; // recover lifespan					
 				}
-				if(velocity >= 60){
-					array[i].fading = false; // don't fade if velocity is >= than 60 
-				} else if(velocity < 60){
-					array[i].fading = true; // fade if velocity is < than 60
-				}
+				array[i].fading = false; // don't fade if velocity is >= than 60 
 			} else {
 				// if velocity is == 0 (aka pad no longer pressed) chech if the shape was already fading to prevent this command fading it again from the start 
 				if(array[i].fading == false){
@@ -220,7 +222,7 @@ function updateSustainForLayer(layer, velocity){
 	// this method updates a boolean value I can then use to decide
 	// wether or not sending drawing instruction for a specific layer
 	// to mySketch. That is because when shapse are not visible, 
-	// lifespan (aka opacity) is set to 0, but shapes are still drawn.
+	// lifespan (aka opacity) is set to 0, but shapes would be still drawn.
 	// In this way when a note's velocity is > 0, drawing commands are
 	// sent to mySketch and shapes are drawn, else drawing commands are 
 	// blocked saving cpu when shapes don't need to be shown
@@ -229,15 +231,19 @@ function updateSustainForLayer(layer, velocity){
 	switch (layer){
 		case "layer1":
 			layer1.sustain = sustainStatus;
+			// post("layer1.sustain: " + sustainStatus + "\n");
 		break;
 		case "layer2":
 			layer2.sustain = sustainStatus;
+			// post("layer2.sustain: " + sustainStatus + "\n");
 		break;
 		case "layer3":
 			layer3.sustain = sustainStatus;
+			// post("layer3.sustain: " + sustainStatus + "\n");
 		break;
 		case "layer4":
 			layer4.sustain = sustainStatus;
+			// post("layer4.sustain: " + sustainStatus + "\n");
 		break;
 		default:
 	}
@@ -256,6 +262,11 @@ function updateSustainForLayer(layer, velocity){
 // 	mid = m;
 // 	high = h;
 // }
+
+var lowFreq;
+var midFreq;
+var highFreq;
+var allFreq;
 
 function levels(l, m, h, a){
 	// update values for low mid high levels coming from the DSP Values M4L device in the same track as this one.
