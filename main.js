@@ -143,10 +143,10 @@ function perspective(i){
 
 function cameraControl(value){
 	// myRender.camera = [value * 5, 0, 1];
-	myCamera.lens_angle = 53 - (value * 100);
+	myCamera.lens_angle = 53 - ((value * allFreq) * 100);
 	// myCamera.rotate = [value * 100, 0, 1, 0];
 	// myCamera.rotate = [0, value * 360, 0, 1];
-	// post(myCamera.lens_angle + "\n");
+	post("value * allFreq: " + (value * allFreq) + "\n");
 	// myRender.rotatexyz = [0, value * 360, 0];
 }
 
@@ -263,10 +263,10 @@ function updateSustainForLayer(layer, velocity){
 // 	high = h;
 // }
 
-var lowFreq;
-var midFreq;
-var highFreq;
-var allFreq;
+var lowFreq = 0.0;
+var midFreq = 0.0;
+var highFreq = 0.0;
+var allFreq = 0.0;
 
 function levels(l, m, h, a){
 	// update values for low mid high levels coming from the DSP Values M4L device in the same track as this one.

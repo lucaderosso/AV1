@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -37,6 +37,50 @@
 		"style" : "",
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"comment" : "",
+					"id" : "obj-70",
+					"index" : 4,
+					"maxclass" : "inlet",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 802.0, 14.0, 30.0, 30.0 ],
+					"presentation_rect" : [ 807.0, 14.0, 0.0, 0.0 ],
+					"style" : "",
+					"tricolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-67",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "bang", "clear" ],
+					"patching_rect" : [ 802.0, 68.0, 53.0, 22.0 ],
+					"presentation_rect" : [ 802.0, 68.0, 0.0, 0.0 ],
+					"style" : "",
+					"text" : "t b clear"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-68",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 3,
+					"outlettype" : [ "bang", "bang", "int" ],
+					"patching_rect" : [ 802.0, 113.0, 46.0, 22.0 ],
+					"presentation_rect" : [ 802.0, 113.0, 0.0, 0.0 ],
+					"style" : "",
+					"text" : "uzi 4 0"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-65",
 					"maxclass" : "message",
@@ -92,7 +136,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-43",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -294,7 +338,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-58",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -320,7 +364,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-59",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -333,7 +377,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-61",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -552,7 +596,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-15",
-					"index" : 0,
+					"index" : 5,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -710,7 +754,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-31",
-					"index" : 0,
+					"index" : 4,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -879,7 +923,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -1078,7 +1122,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "" ],
+									"outlettype" : [ "bang" ],
 									"patching_rect" : [ 90.0, 30.0, 30.0, 30.0 ],
 									"style" : ""
 								}
@@ -1297,11 +1341,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-5",
-					"index" : 0,
+					"index" : 5,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 969.288879, 350.0, 30.0, 30.0 ],
 					"style" : "",
 					"tricolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1337,7 +1381,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-23",
-					"index" : 0,
+					"index" : 3,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1351,7 +1395,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-22",
-					"index" : 0,
+					"index" : 3,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -1515,7 +1559,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-11", 0 ],
-					"midpoints" : [ 1611.655469, 212.0, 1219.077759, 212.0 ],
+					"midpoints" : [ 1611.655518, 212.0, 1219.077759, 212.0 ],
 					"source" : [ "obj-10", 4 ]
 				}
 
@@ -1700,7 +1744,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-145", 2 ],
-					"midpoints" : [ 1187.077759, 501.510681, 984.78888, 501.510681 ],
+					"midpoints" : [ 1187.077759, 501.510681, 984.788879, 501.510681 ],
 					"order" : 1,
 					"source" : [ "obj-18", 1 ]
 				}
@@ -1733,7 +1777,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-145", 3 ],
-					"midpoints" : [ 1403.866699, 518.760681, 1085.683319, 518.760681 ],
+					"midpoints" : [ 1403.866699, 518.760681, 1085.68335, 518.760681 ],
 					"order" : 1,
 					"source" : [ "obj-20", 1 ]
 				}
@@ -1891,7 +1935,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-60", 0 ],
-					"midpoints" : [ 1050.788879, 485.5, 857.394409, 485.5 ],
+					"midpoints" : [ 1050.788818, 485.5, 857.394409, 485.5 ],
 					"source" : [ "obj-39", 1 ]
 				}
 
@@ -2058,6 +2102,36 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-30", 0 ],
+					"order" : 0,
+					"source" : [ "obj-67", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-68", 0 ],
+					"source" : [ "obj-67", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"order" : 1,
+					"source" : [ "obj-67", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-68", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-20", 0 ],
 					"source" : [ "obj-69", 0 ]
 				}
@@ -2068,6 +2142,13 @@
 					"destination" : [ "obj-60", 0 ],
 					"midpoints" : [ 959.788879, 485.75, 857.394409, 485.75 ],
 					"source" : [ "obj-7", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-67", 0 ],
+					"source" : [ "obj-70", 0 ]
 				}
 
 			}
@@ -2100,15 +2181,6 @@
 
 			}
  ],
-		"dependency_cache" : [ 			{
-				"name" : "shapes.txt",
-				"bootpath" : "~/Documents/_Projects/2018-09_s-av_AV1/repository/AV1",
-				"patcherrelativepath" : ".",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
