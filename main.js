@@ -115,7 +115,7 @@ function dialValue(dial, value){
 		break;
 		case "d3":
 			dial3 = value;
-			cameraControl(value);
+			cameraControl(dial3);
 		break;
 		case "d4":
 			dial4 = value;
@@ -136,18 +136,22 @@ function dialValue(dial, value){
 	}
 }
 
-
-function perspective(i){
+function cameraOrtho(i){
 	myCamera.ortho = i;
 }
 
 function cameraControl(value){
-	// myRender.camera = [value * 5, 0, 1];
-	myCamera.lens_angle = 53 - ((value * allFreq) * 100);
-	// myCamera.rotate = [value * 100, 0, 1, 0];
-	// myCamera.rotate = [0, value * 360, 0, 1];
+	if(value > 0.0){
+		cameraOrtho(0);
+		// myRender.camera = [value * 5, 0, 1];
+		myCamera.lens_angle = 53 - ((value * allFreq) * 100);
+		// myCamera.rotate = [value * 100, 0, 1, 0];
+		// myCamera.rotate = [0, value * 360, 0, 1];
+	} else if(value == 0.0) {
+		cameraOrtho(2);
+	}
+
 	post("value * allFreq: " + (value * allFreq) + "\n");
-	// myRender.rotatexyz = [0, value * 360, 0];
 }
 
 function cameraViewport(value){
@@ -392,6 +396,10 @@ function draw(){
 		progressBar.run();		
 	};
 	
+
+	if (myCamera.ortho == 0){
+		cameraControl(dial3);
+	}
 
 	gridIntensity(dial5);
 	viewPort();
