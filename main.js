@@ -123,7 +123,7 @@ function dialValue(dial, value){
 		break;
 		case "d5": // Audio In
 			dial5 = value;
-			gridIntensity(dial5);
+			// gridIntensity(dial5);
 		break;
 		case "d6": //LFO
 			dial6 = value;
@@ -151,7 +151,7 @@ function cameraControl(value){
 		cameraOrtho(2);
 	}
 
-	post("value * allFreq: " + (value * allFreq) + "\n");
+	// post("value * allFreq: " + (value * allFreq) + "\n");
 }
 
 function cameraViewport(value){
@@ -319,14 +319,14 @@ function invertColors(invert){
 }
 
 // gridIntensity makes the grid's color reactive to audio signal
-function gridIntensity(value){
+function gridIntensity(value, audio){
 	if(whiteOnBlack == true){
 		// adding 0.1 so it never goes to 0
-		var amount = 0.1 + ((highFreq * value) * 0.4);
+		var amount = value + ((audio * dial5) * 0.4);
 		// assigning value to R, G and B to make it go from black to white
 		myGrid.gl_color = [amount, amount, amount, 1];
 	} else {
-		var amount = 0.9 - (highFreq * value);
+		var amount = value - (audio * dial5);
 		myGrid.gl_color = [amount, amount, amount, 1];
 	}
 }
@@ -396,12 +396,11 @@ function draw(){
 		progressBar.run();		
 	};
 	
-
 	if (myCamera.ortho == 0){
 		cameraControl(dial3);
-	}
+	}	
 
-	gridIntensity(dial5);
+	// gridIntensity(dial5);
 	viewPort();
 
 	myRender.erase();

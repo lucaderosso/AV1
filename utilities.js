@@ -43,7 +43,7 @@ var myMatrix = new JitterObject("jit.matrix", "mat"); //
 myMatrix.dim = [1280, 1024];
 
 var myWindow = new JitterObject("jit.window", "video-window"); //
-myWindow.floating = 1;
+myWindow.floating = 0;
 myWindow.size = [720, 450];
 myWindow.pos = [0, 0];
 myWindow.fsaa = 1;
@@ -79,7 +79,7 @@ myCamera.ortho = 2; // this was first asigned to myRender but it's now applied t
 var myGrid = new JitterObject("jit.gl.gridshape", "video-window");
 myGrid.blend_enable = 1; //because we are working with transparency
 myGrid.shape = "plane";
-myGrid.gl_color = [0.8, 0.8, 0.8, 0.1]; 
+myGrid.gl_color = [0., 0., 0., 1]; 
 myGrid.gridmode = 0;
 myGrid.poly_mode = 2;
 var thisPointSize = 4; // double when using projectors;
