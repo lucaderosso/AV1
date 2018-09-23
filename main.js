@@ -220,6 +220,7 @@ function callAction(family, type, layer, velocity){
 
 		break;
 	}
+	// post(family + " " + type + " " + layer + " " + velocity + " " + "\n");
 }
 
 function updateSustainForLayer(layer, velocity){	

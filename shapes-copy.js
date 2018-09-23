@@ -705,7 +705,7 @@ function genesis(layer, type, gridColumns, gridRows, items){
 			// populate the arrays with all the coordinates calculated
 			yCoordinates.push(y);
 			xCoordinates.push(x);
-			post("xCoor: " + x + "| yCoor: " + y + "\n");
+			// post("xCoor: " + x + "| yCoor: " + y + "\n");
 			// populate the arrays with all the coordinates to define the roaming areas
 			leftBounds.push(left);
 			rightBounds.push(right);
@@ -720,12 +720,12 @@ function genesis(layer, type, gridColumns, gridRows, items){
 		var emptyCells = totalCells - items;
 		// calculate new starting index do that there will be n even number of empty cells at the beginnin and end of the grid
 		cellsIndex = Math.floor(emptyCells / 2);
-		post(layer + " cellsIndex: " + cellsIndex + "\n");
+		// post(layer + " cellsIndex: " + cellsIndex + "\n");
 	}
 
 	// populate array with shapes
 	var populateNormally = Math.random() > 0.5 ? true : false;
-	post("populateNormally: " + populateNormally + "\n");
+	// post("populateNormally: " + populateNormally + "\n");
 	if(populateNormally == true){	
 		for (var i = cellsIndex; i < (items + cellsIndex); i++) {
 			addShapesToLayer(array, xCoordinates[i], yCoordinates[i], leftBounds[i], rightBounds[i], bottomBounds[i], topBounds[i], type);					
@@ -736,7 +736,7 @@ function genesis(layer, type, gridColumns, gridRows, items){
 		}
 	}
 
-	post("layer" + layer + "| totalCells: " + totalCells + "| items: " + items + "\n");
+	// post("layer" + layer + "| totalCells: " + totalCells + "| items: " + items + "\n");
 
 }
 
