@@ -344,7 +344,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "s009": // not that interesting
+		case "s009":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
 			mySketch.moveto(this.locationGenesis.x, this.locationGenesis.y, this.locationGenesis.z); // position shape at location
@@ -382,7 +382,7 @@ Shape.prototype.display = function(){
 			// mySketch.glpopmatrix();
 		break;
 
-		case "s010": // not that interesting
+		case "s010":
 			mySketch.glpushmatrix();
 			mySketch.glenable("line_stipple");
 			mySketch.gllinestipple(1, 3855);
@@ -407,7 +407,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "s011": // not that interesting
+		case "s011":
 			mySketch.glpushmatrix();
 			mySketch.glenable("line_stipple");
 			mySketch.gllinestipple(1, 3855);
@@ -420,7 +420,7 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		case "s012": // not that interesting
+		case "s012":
 			mySketch.glpushmatrix();
 			mySketch.gldisable("line_stipple");
 			//
@@ -441,11 +441,16 @@ Shape.prototype.display = function(){
 
 		break;
 
-		case "s013":
+		case "s013": // TBD
 			mySketch.glpushmatrix();
 			mySketch.gllinewidth(10 * this.scale.x);
-			mySketch.linesegment(this.boundLeft, this.boundBottom, 0, this.locationGenesis.x, this.location.y, 0);
-			mySketch.linesegment(this.locationGenesis.x, this.location.y, 0, this.boundRight, this.boundTop, 0);	
+			// mySketch.linesegment(this.boundLeft, this.boundBottom, 0, this.locationGenesis.x, this.location.y, 0);
+			// mySketch.linesegment(this.locationGenesis.x, this.location.y, 0, this.boundRight, this.boundTop, 0);	
+			mySketch.moveto(this.location.x, this.location.y, 0);
+			mySketch.shapeorient(0, 0, 0);
+			// mySketch.gltranslate(this.location.x, this.location.y, 0);
+			mySketch.linesegment(this.boundLeft, this.boundBottom, 0, this.boundRight, this.boundTop, 0);
+
 			mySketch.glpopmatrix();
 		break;
 
@@ -467,27 +472,20 @@ Shape.prototype.display = function(){
 
 		case "s015":
 			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
 			mySketch.moveto(0, 0, 0);
-			//
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
 			mySketch.gldisable("line_stipple");
-			//
 			mySketch.gllinewidth(8 * this.scale.x);
-			mySketch.linesegment(0, -this.height*2, 0, 0, this.height*2, 0);
+			mySketch.linesegment(0, -this.height, 0, 0, this.height, 0);
 			mySketch.glpopmatrix();
 			//
-			//
-			//
 			mySketch.glpushmatrix();
-			mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
 			mySketch.moveto(0, 0, 0);
-			mySketch.glrotate(this.rotation+90, 0, 0, this.rotationDirection);
-			//
+			mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
 			mySketch.gldisable("line_stipple");
-			//
 			mySketch.gllinewidth(8 * this.scale.x);
-			mySketch.linesegment(-this.width*4, 0, 0, this.width*4, 0, 0);
-
+			mySketch.linesegment(-this.width, 0, 0, this.width, 0, 0);
 			mySketch.glpopmatrix();
 		break;
 
@@ -500,13 +498,14 @@ Shape.prototype.display = function(){
 			//
 			mySketch.gllinewidth(2);
 			mySketch.gldisable("line_stipple");
-			mySketch.shapeslice(3);
+			mySketch.shapeslice(20);
 			//
 			mySketch.glenable("line_stipple");
 			
 			mySketch.gllinestipple(1, 3855);
-			mySketch.circle(0.01);
-			mySketch.framecircle(0.01 / this.scale.y);
+			mySketch.circle(0.0025);
+			mySketch.shapeslice(3);
+			mySketch.framecircle(0.02 / this.scale.y);
 			mySketch.glpopmatrix();
 		break;
 
@@ -524,11 +523,10 @@ Shape.prototype.display = function(){
 			mySketch.glpopmatrix();
 		break;
 
-		// remove this one
 		case "s018":
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 45);
-			mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 0, 0, 1);
 			mySketch.moveto(0, 0, 0);
 			//
@@ -537,17 +535,18 @@ Shape.prototype.display = function(){
 			//
 			mySketch.circle(0.00375);
 			mySketch.glpopmatrix();
-			//–––––popping–––––//
+			//
 			mySketch.glpushmatrix();
-			mySketch.shapeorient(0, 0, 45);
+			mySketch.shapeorient(0, 0, 90);
 			mySketch.gltranslate(this.locationGenesis.x, this.locationGenesis.y, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation, 0, 1, 0);
 			mySketch.moveto(0, 0, 0);
-			mySketch.glscale(this.scale.y / distort, this.scale.y / distort, 0)
+			mySketch.glscale(1, this.scale.y / distort, 0)
 			//
-			mySketch.shapeslice(4);
 			//
-			mySketch.framecircle(this.width);
+			mySketch.shapeslice(1, 1);
+			mySketch.shapeprim("lines");
+			mySketch.plane(this.height/2, this.width/2);
 			mySketch.glpopmatrix();
 		break;
 
@@ -555,11 +554,162 @@ Shape.prototype.display = function(){
 			mySketch.glpushmatrix();
 			mySketch.shapeorient(0, 0, 0);
 			mySketch.gltranslate((this.location.x + positions[1]) * distort, this.location.y, this.locationGenesis.z);
-			mySketch.glrotate(this.rotation, 0, 0, 1);			
+			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);			
 			mySketch.moveto(positions[0], 0, 0);
 			//
 			mySketch.shapeslice(24);
 			mySketch.circle(0.0075 * this.scale.x);
+			mySketch.glpopmatrix();
+		break;
+
+		case "s020":
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
+			mySketch.gldisable("line_stipple");
+			mySketch.gllinewidth(8 * this.scale.x);
+			mySketch.linesegment(0, -this.height/2, 0, 0, this.height/2, 0);
+			mySketch.glpopmatrix();
+		break;
+
+		case "s021":
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glrotate(this.rotation/2, 0, 0, this.rotationDirection);
+			mySketch.gldisable("line_stipple");
+			
+			mySketch.gllinewidth(4);
+			mySketch.linesegment(this.height);
+			mySketch.glcolor(1, 0.21, 0.3, 1);
+			mySketch.shapeslice(60);
+			mySketch.framecircle(this.height/2 * this.scale.x * distort);
+			mySketch.glpopmatrix();
+		break;
+
+		case "s022":
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
+			mySketch.gldisable("line_stipple");
+			mySketch.gllinewidth(2);
+			mySketch.shapeslice(100);
+			mySketch.glscale(this.scale.x, this.scale.x, 0);
+			mySketch.circle(this.height);
+			mySketch.glcolor(0., 0., 0., 1);
+			mySketch.linesegment(0, -this.height/4, 0, 0, this.height/4, 0);
+			mySketch.glpopmatrix();
+		break;
+
+		case "s023":
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
+			mySketch.gldisable("line_stipple");
+			mySketch.gllinewidth(8 * this.scale.x);
+			mySketch.framecircle(this.height/2);
+			mySketch.glpopmatrix();
+		break;
+
+		case "s024":
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glrotate(this.rotation, 0, 1, 0);
+			mySketch.gldisable("line_stipple");
+			mySketch.glscale(1, this.scale.x, 1);
+			mySketch.cube(this.width/8 * distort, this.height * distort - 0.001, 0.01);
+			mySketch.glpopmatrix();
+		break;
+
+		case "s025":
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glscale(this.scale.x, this.scale.x, 0);
+			mySketch.glrotate(this.rotation/2, 0, 0, this.rotationDirection);
+			
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gldisable("line_stipple");
+			mySketch.gllinewidth(4);
+			mySketch.linesegment(-this.width, 0, 0, this.width, 0, 0);
+			mySketch.glpopmatrix(); 
+			
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(-this.width, 0, this.locationGenesis.z);
+			mySketch.linesegment(0, -0.02, 0, 0, 0.02, 0);
+			mySketch.glpopmatrix();
+
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.width, 0, this.locationGenesis.z);
+			mySketch.linesegment(0, -0.02, 0, 0, 0.02, 0);
+			mySketch.glpopmatrix();
+			mySketch.glpopmatrix();
+		break;
+
+		case "s026":
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.location.x - this.width/2, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glscale(this.scale.x, this.scale.x, 0);
+			mySketch.glrotate(this.rotation/2, 0, 0, 1);
+			
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			// mySketch.gltranslate(0, 0, this.locationGenesis.z);			
+			mySketch.gldisable("line_stipple");
+			mySketch.gllinewidth(4);
+			// mySketch.shapeorient(0, 0, 45);
+			mySketch.linesegment(0, 0, 0, this.width, 0, 0);
+			mySketch.glpopmatrix(); 
+			
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.width + 0.004, 0, this.locationGenesis.z);
+			// mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
+			// mySketch.linesegment(0, -0.02, 0, 0, 0.02, 0);
+			mySketch.shapeslice(30);
+			mySketch.framecircle(0.004);
+			mySketch.glpopmatrix();
+			mySketch.glpopmatrix();
+		break;
+
+		case "s027":
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
+			mySketch.gldisable("line_stipple");
+			mySketch.gllinewidth(8 * this.scale.x);
+			mySketch.framecircle(this.height/2);
+			mySketch.glpopmatrix();
+		break;
+
+		case "s028":
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
+			mySketch.gldisable("line_stipple");
+			mySketch.gllinewidth(8 * this.scale.x);
+			mySketch.framecircle(this.height/2);
+			mySketch.glpopmatrix();
+		break;
+
+		case "s029":
+			mySketch.glpushmatrix();
+			mySketch.moveto(0, 0, 0);
+			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
+			mySketch.gldisable("line_stipple");
+			mySketch.gllinewidth(8 * this.scale.x);
+			mySketch.framecircle(this.height/2);
 			mySketch.glpopmatrix();
 		break;
 
