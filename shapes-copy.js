@@ -655,63 +655,79 @@ Shape.prototype.display = function(){
 
 		case "s026":
 			mySketch.glpushmatrix();
-			mySketch.moveto(0, 0, 0);
-			mySketch.gltranslate(this.location.x - this.width/2, this.locationGenesis.y, this.locationGenesis.z);
-			mySketch.glscale(this.scale.x, this.scale.x, 0);
-			mySketch.glrotate(this.rotation/2, 0, 0, 1);
-			
-			mySketch.glpushmatrix();
-			mySketch.moveto(0, 0, 0);
-			// mySketch.gltranslate(0, 0, this.locationGenesis.z);			
-			mySketch.gldisable("line_stipple");
-			mySketch.gllinewidth(4);
-			// mySketch.shapeorient(0, 0, 45);
-			mySketch.linesegment(0, 0, 0, this.width, 0, 0);
-			mySketch.glpopmatrix(); 
-			
-			mySketch.glpushmatrix();
-			mySketch.moveto(0, 0, 0);
-			mySketch.gltranslate(this.width + 0.004, 0, this.locationGenesis.z);
-			// mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
-			// mySketch.linesegment(0, -0.02, 0, 0, 0.02, 0);
-			mySketch.shapeslice(30);
-			mySketch.framecircle(0.004);
-			mySketch.glpopmatrix();
+
+				mySketch.moveto(0, 0, 0);
+				mySketch.gltranslate(this.location.x - this.width/2, this.locationGenesis.y, this.locationGenesis.z);
+				mySketch.glscale(this.scale.x, this.scale.x, 0);
+				mySketch.glrotate(this.rotation/2, 0, 0, 1);
+				
+				mySketch.glpushmatrix();
+					mySketch.moveto(0, 0, 0);
+					// mySketch.gltranslate(0, 0, this.locationGenesis.z);			
+					mySketch.gldisable("line_stipple");
+					mySketch.gllinewidth(4);
+					// mySketch.shapeorient(0, 0, 45);
+					mySketch.linesegment(0, 0, 0, this.width, 0, 0);
+				mySketch.glpopmatrix(); 
+				
+				mySketch.glpushmatrix();
+					mySketch.moveto(0, 0, 0);
+					mySketch.gltranslate(this.width + 0.004, 0, this.locationGenesis.z);
+					// mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
+					// mySketch.linesegment(0, -0.02, 0, 0, 0.02, 0);
+					mySketch.shapeslice(30);
+					mySketch.framecircle(0.004);
+				mySketch.glpopmatrix();
 			mySketch.glpopmatrix();
 		break;
 
 		case "s027":
 			mySketch.glpushmatrix();
-			mySketch.moveto(0, 0, 0);
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
-			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
-			mySketch.gldisable("line_stipple");
-			mySketch.gllinewidth(8 * this.scale.x);
-			mySketch.framecircle(this.height/2);
+
+				mySketch.moveto(0, 0, 0);
+				mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
+				mySketch.glrotate(this.rotation, 0, 1, 0);
+			
+				mySketch.glpushmatrix();
+					mySketch.moveto(0, 0, 0);
+					mySketch.gldisable("line_stipple");
+					// mySketch.gllinewidth(8 * this.scale.x);
+					mySketch.glscale(1, this.scale.y, 1);
+					mySketch.cube(this.width - 0.002, 0.01, 0.02);
+				mySketch.glpopmatrix();
+
+				mySketch.glpushmatrix();
+					mySketch.moveto(0, 0, 0);
+					mySketch.gltranslate(this.width - 0.0095, 0, this.locationGenesis.z);
+					mySketch.glscale(this.scale.y, this.scale.y, 1);
+					mySketch.glcolor(0, 0, 0, 1);
+					mySketch.circle(0.005);
+				mySketch.glpopmatrix();
+
 			mySketch.glpopmatrix();
 		break;
 
-		case "s028":
-			mySketch.glpushmatrix();
-			mySketch.moveto(0, 0, 0);
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
-			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
-			mySketch.gldisable("line_stipple");
-			mySketch.gllinewidth(8 * this.scale.x);
-			mySketch.framecircle(this.height/2);
-			mySketch.glpopmatrix();
-		break;
+		// case "s028":
+		// 	mySketch.glpushmatrix();
+		// 	mySketch.moveto(0, 0, 0);
+		// 	mySketch.gltranslate(this.locationGenesis.x, this.location.y, this.locationGenesis.z);
+		// 	mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
+		// 	mySketch.gldisable("line_stipple");
+		// 	mySketch.gllinewidth(8 * this.scale.x);
+		// 	mySketch.framecircle(this.height/2);
+		// 	mySketch.glpopmatrix();
+		// break;
 
-		case "s029":
-			mySketch.glpushmatrix();
-			mySketch.moveto(0, 0, 0);
-			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
-			mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
-			mySketch.gldisable("line_stipple");
-			mySketch.gllinewidth(8 * this.scale.x);
-			mySketch.framecircle(this.height/2);
-			mySketch.glpopmatrix();
-		break;
+		// case "s029":
+		// 	mySketch.glpushmatrix();
+		// 	mySketch.moveto(0, 0, 0);
+		// 	mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
+		// 	mySketch.glrotate(this.rotation, 0, 0, this.rotationDirection);
+		// 	mySketch.gldisable("line_stipple");
+		// 	mySketch.gllinewidth(8 * this.scale.x);
+		// 	mySketch.framecircle(this.height/2);
+		// 	mySketch.glpopmatrix();
+		// break;
 
 		default:
 			// i had something here but then removed it because it was constantly displayed... not sure why. I should check the max patch.
@@ -826,7 +842,7 @@ function genesis(layer, type, gridColumns, gridRows, items){
 	var topBounds = [];
 
 	var cellsIndex = 0; // defines the starting cell in polulating a grid (eg: grid 2coll 2rows cellsIndex = 1, first shape will be in the second cell - bottom right)
-	post("•\n")
+	// post("•\n")
 	// calculate x and y position for all items
 	for (var f = 0; f < rows; f++) {
 		// calculate vertical multiplier

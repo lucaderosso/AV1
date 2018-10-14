@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -56,7 +56,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 407.625, 20.0, 214.0, 33.0 ],
+					"patching_rect" : [ 453.625, 20.0, 214.0, 33.0 ],
 					"style" : "",
 					"text" : "qmetro is less strict than metro and therefore more kind with CPU"
 				}

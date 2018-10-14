@@ -111,7 +111,8 @@ function dialValue(dial, value){
 		break;
 		case "d2":
 			dial2 = value;
-			updateLifeDecay(value);
+			// I coomented this for the time being because it doesn't seem to add much visial value but it certainly eats CPU when adjusted, causing frame rate to slow down
+			// updateLifeDecay(value); 
 		break;
 		case "d3":
 			dial3 = value;
