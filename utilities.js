@@ -82,7 +82,7 @@ myGrid.shape = "plane";
 myGrid.gl_color = [0.15, 0.15, 0.15, 1]; 
 myGrid.gridmode = 0;
 myGrid.poly_mode = 2;
-var thisPointSize = 2; // double when using projectors;
+var thisPointSize = 4; // 2 on retina 4 when using projectors;
 myGrid.point_size = thisPointSize;
 myGrid.line_width = 2; 
 
