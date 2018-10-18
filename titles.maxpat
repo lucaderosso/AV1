@@ -38,13 +38,25 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-43",
+					"linecount" : 3,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1143.0, 369.0, 157.0, 47.0 ],
+					"style" : "",
+					"text" : "< this is where you can set the set's lenght when using the timer"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-77",
 					"maxclass" : "newobj",
 					"numinlets" : 3,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 1550.0, 497.5, 43.0, 22.0 ],
-					"presentation_rect" : [ 1725.0, 338.5, 0.0, 0.0 ],
 					"style" : "",
 					"text" : "line 0."
 				}
@@ -58,7 +70,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1550.0, 462.0, 61.0, 22.0 ],
-					"presentation_rect" : [ 1644.0, 293.5, 0.0, 0.0 ],
 					"style" : "",
 					"text" : "1., 0. 500"
 				}
@@ -593,7 +604,7 @@
 					"outlettype" : [ "int" ],
 					"patching_rect" : [ 1079.799561, 369.0, 55.0, 22.0 ],
 					"style" : "",
-					"text" : ">= 2000"
+					"text" : ">= 3600"
 				}
 
 			}
