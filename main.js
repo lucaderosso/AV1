@@ -326,10 +326,10 @@ function gridIntensity(value, audio){
 		// adding 0.1 so it never goes to 0
 		var amount = value + ((audio * dial5) * 0.4);
 		// assigning value to R, G and B to make it go from black to white
-		myGrid.gl_color = [amount, amount, amount, 1];
+		myGrid.gl_color = [amount, amount, amount, 0.2];
 	} else {
 		var amount = value - (audio * dial5);
-		myGrid.gl_color = [amount, amount, amount, 1];
+		myGrid.gl_color = [amount, amount, amount, 0.2];
 	}
 }
 

@@ -230,7 +230,7 @@ Shape.prototype.display = function(){
 			// mySketch.glscale(this.scale.x * distort, this.scale.y * distort, 1);
 			mySketch.moveto(0, 0, 0);
 			//
-			mySketch.gllinewidth(4);
+			mySketch.gllinewidth(2);
 			mySketch.framequad((this.width * this.scale.x * distort) - 0.003, this.height/16, 0, (this.width * this.scale.x * distort) - 0.003, -this.height/16, 0, -this.width + 0.003, -this.height/16, 0, -this.width + 0.003, this.height/16, 0);
 			mySketch.glpopmatrix();
 		break;
@@ -570,7 +570,7 @@ Shape.prototype.display = function(){
 			mySketch.gltranslate(this.location.x, this.locationGenesis.y, this.locationGenesis.z);
 			mySketch.glrotate(this.rotation/2, 0, 0, this.rotationDirection);
 			mySketch.gldisable("line_stipple");
-			mySketch.gllinewidth(4);
+			mySketch.gllinewidth(2);
 			mySketch.linesegment(this.height);
 			// mySketch.glcolor(1, 0.21, 0.3, 1);
 			mySketch.shapeslice(60);
